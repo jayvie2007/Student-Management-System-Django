@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +18,10 @@
   <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Student Management System</a>
+        <a class="navbar-brand" href="#">
+          <i class="fa-solid fa-graduation-cap fa-lg"></i> Student Management
+          System</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -29,15 +36,82 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">All Students</a>
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-list fa-lg"></i> All Students</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Add Students</a>
+              <a class="nav-link" href="#">
+                <i class="fa-sharp fa-solid fa-plus fa-lg"></i> Add Students</a
+              >
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <div class="container-fluid"></div>
+    <h3 class="m-4">All Students</h3>
+    <div class="row">
+      <div class="col=12">
+        {% if students %}
+        <div class="card bg-light mg-4 mb-4">
+          <div class="card-header">
+            <i class="fa-solid fa-list fa-lg"></i> Student Records
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Student Number</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Course</th>
+                      <th scope="col">GPA </th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--Initialize loop to call students data in objects-->
+                    {% for students in students %}
+                    {% endfor %}
+                    <tr>
+                      <!--calling students data inside the loop-->
+                      <td>{{ student.student_number }}</td>
+                      <td>{{ student.last_name }}</td>
+                      <td>{{ student.first_name }}</td>
+                      <td>{{ student.email }}</td>
+                      <td>{{ student.course }}</td>
+                      <td>{{ student.gpa }}</td>
+                      <td>ACTIONS</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </p>
+          </div>
+        </div>
+        <!-- print else if no data is registered-->
+        {% else %}
+        <h5 class="alert alert-primary ms-4 me-4">No Student</h5>
+        {% endif %}
+      </div>
+    </div>
+    <footer class="mt-auto mb-4">
+      <div class="center">
+        <span>
+          <!--&copy means © -->
+          <!--included javascript get current year-->
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Jayvie's Student System
+        </span>
+      </div>
+    </footer>
     <!--install bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
