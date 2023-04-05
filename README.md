@@ -4,9 +4,11 @@
 <p> Open your VS Code then open this folder <p>
 
 <h3>Activate the virtual environment</h3>
+
 ```bash
   .env\scripts\activate
 ```
+
 <p> Make sure you are in the Student Management System Folder </p>
 
 <h3>change folder directory</h3>
