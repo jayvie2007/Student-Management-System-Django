@@ -14,13 +14,10 @@ def index(request):
 #model and hence to be called by loop inside the templates
 
 def view_student(request, id):
-    students = students.objects.get(pk=id)
+    students = Student.objects.get(pk=id)
     return HttpResponseRedirect(reverse('index'))
 
 def add(request):
-    if request.method == 'GET':
-        # Render the add student form template
-        return render(request, 'students/add.html')
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -44,8 +41,31 @@ def add(request):
                 'form': StudentForm(),
                 'success':True,
             })
-        else:
-            form = StudentForm()
-        return render(request, 'students/add.html',{
-        'form': StudentForm()
+    else:
+        form = StudentForm()
+    return render(request, 'students/add.html',{
+    'form': StudentForm()
+    })
+    
+def edit(request, id):
+    if request.method == 'POST':
+        students = Student.objects.get(pk=id)
+        form = StudentForm(request.POST, instance=students)
+        if form.is_valid():
+            form.save()
+            return render(request, 'students/edit.html', {
+                'form': form,
+                'success': True,
+            })
+    else:
+        student = Student.objects.get(pk=id)
+        form = StudentForm(instance=student)
+        return render(request, 'students/edit.html', {
+            'form': form
         })
+    
+def delete(request, id):
+    if request.method =='POST':
+        students = Student.objects.get(pk=id)
+        students.delete()
+        return HttpResponseRedirect(reverse('index'))
