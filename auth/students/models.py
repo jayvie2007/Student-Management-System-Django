@@ -10,4 +10,4 @@ class Student(models.Model):
     gpa = models.FloatField()
 
     def __str__(self):
-        return f'Student: {self.last_name} {self.first_name}'
+        return f'Student: {self.last_name}, {self.first_name}'

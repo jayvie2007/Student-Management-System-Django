@@ -75,8 +75,7 @@
                   </thead>
                   <tbody>
                     <!--Initialize loop to call students data in objects-->
-                    {% for students in students %}
-                    {% endfor %}
+                    {% for student in students %}
                     <tr>
                       <!--calling students data inside the loop-->
                       <td>{{ student.student_number }}</td>
@@ -87,6 +86,7 @@
                       <td>{{ student.gpa }}</td>
                       <td>ACTIONS</td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
