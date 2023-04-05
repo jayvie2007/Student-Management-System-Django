@@ -1,4 +1,4 @@
-{% extends 'students/base.html' %} {% body block %}
+{% extends 'students/base.html' %} {% block body %}
 <h3 class="'text-center m-4">Add Student</h3>
 {% if success %}
 <div class="alert alert-success" role="alert">
@@ -15,6 +15,8 @@
       <div class="card-body">
         <form action="{% url 'add' %}" method="POST">
           {% csrf_token %} {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Add</button>
+          <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
         </form>
       </div>
     </div>

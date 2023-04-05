@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from rest_framework.decorators import APIView
+
 from .models import Student
 from .forms import StudentForm
 # Create your views here.
 
-#@APIView(['GET', 'POST'])
 def index(request):
     return render(request, 'students/index.html',{
         'students': Student.objects.all()
@@ -19,6 +18,9 @@ def view_student(request, id):
     return HttpResponseRedirect(reverse('index'))
 
 def add(request):
+    if request.method == 'GET':
+        # Render the add student form template
+        return render(request, 'students/add.html')
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -45,5 +47,5 @@ def add(request):
         else:
             form = StudentForm()
         return render(request, 'students/add.html',{
-        'form':StudentForm()
+        'form': StudentForm()
         })
