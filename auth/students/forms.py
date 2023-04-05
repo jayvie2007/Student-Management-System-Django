@@ -13,3 +13,11 @@ class StudentForm(forms.ModelForm):
             'course': 'Course', 
             'gpa': 'GPA',
         } 
+        widgets = {
+            'student_number': forms.NumberInput(attrs={'class': 'form-control'}), 
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}), 
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}), 
+            'course': forms.TextInput(attrs={'class': 'form-control'}), 
+            'gpa': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
