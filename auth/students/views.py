@@ -4,6 +4,8 @@ from django.urls import reverse
 
 from .models import Student
 from .forms import StudentForm
+
+import uuid
 # Create your views here.
 
 def index(request):
@@ -21,7 +23,7 @@ def add(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
-            new_student_number = form.cleaned_data['student_number']
+            new_student_number = generate_uid()
             new_first_name = form.cleaned_data['first_name']
             new_last_name = form.cleaned_data['last_name']
             new_email = form.cleaned_data['email']
@@ -69,3 +71,11 @@ def delete(request, id):
         students = Student.objects.get(pk=id)
         students.delete()
         return HttpResponseRedirect(reverse('index'))
+
+def generate_uid():
+      student_number = uuid.uuid4().hex[-8:]
+      return student_number
+    
+
+
+    
